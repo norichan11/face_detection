@@ -12,6 +12,7 @@ while(True):
 
   # 讀取照片圖檔
   img = cv2.imread('cameraoutput.jpg')
+  gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
   # Dlib 的人臉偵測器
   detector = dlib.get_frontal_face_detector()
@@ -28,7 +29,7 @@ while(True):
 
     # 以方框標示偵測的人臉
     cv2.rectangle(img, (x1, y1), (x2, y2), (0, 255, 0), 4, cv2.LINE_AA)
-    cv2.imwrite("dataset\\guest.jpg", img[y1:y2, x1:x2])
+    cv2.imwrite("dataset\\guest.jpg", gray[y1:y2, x1:x2])
 
   # 若按下 q 鍵則離開迴圈
   if cv2.waitKey(1) & 0xFF == ord('q'):
